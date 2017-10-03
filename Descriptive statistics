@@ -1,0 +1,106 @@
+setwd('D:/Software/R/Descriptive Statistics')
+#Descriptive statistics inclide mean, median, mode, range, quartiles, variance, 
+#standard deviation, max and mean, number of observations
+#tells you central tendancies
+#mode is used in categorical variables when there is 1 zero,
+#mean is also called average, mean, expected value, point estimate
+#sd measures how clustered a data set is.
+x <- c(25,25,25,25,25)
+y <- c(10,15,20,30,50)
+mean(y)
+sd(y)
+summary(Highyield)
+#importance of descriptive statistics
+#to get more accurate statistics
+c <- cars
+c <- cars
+m <- discoveries
+Orangedata <- Orange
+Mugugdata <- read.csv('F:/OneDrive - CGIAR/Work Tools/uganda workshop/SCRIPTS/Class 1/Mugugabiomassdata.csv')
+View(cars)
+anva <-  lm(Orangedata$circumference ~ Orangedata$age + Orangedata$Tree)
+anova(anva)
+summary.aov(aov.orange)
+aov.orange22 <-  aov(Orangedata$circumference ~ Orangedata$age * Orangedata$Tree)
+summary(aov.orange)
+summary.aov(aov.orange22)
+summary(aov.orange22)
+summary.aov(aov.orange)
+
+aov.car <- aov(c$speed ~ c$dist)
+summary(aov.car)
+summary.aov(c$speed ~ c$dist)
+?TukeyHSD
+TukeyHSD(aov.orange22) 
+TukeyHSD(x, which, ordered = FALSE, conf.level = 0.95, ...)
+#post-hoc tests
+ls(Orangedata)
+str(Orangedata)
+
+dim(c)
+summary(Mugugdata)
+summary(Orangedata)
+summary(c$dist)
+hist(c$dist)
+sd(c$dist)
+dim(c$dist)
+length(c$dist)
+library(ggplot2)
+ggplot(cars, aes(x=dist)) + geom_density()
+#There are outliers from 100 to 120
+summary(c$speed)
+hist(c$speed)
+sd(c$speed)
+dim(c$speed)
+lenght(c$speed)
+ggplot(cars,aes(x=speed)) + geom_density()
+#Density of speed looks similar like its histogram
+cor(cars$speed, cars$dist)
+speed <- c(summary(cars$speed), sd(cars$speed), length(cars$speed))
+speed
+dist <- c(summary(cars$dist), sd(cars$dist), length(cars$dist))
+#bind the data together
+output <- rbind(dist,speed) 
+#output to a table in excel
+getwd()
+wd <- "D:/Software/R/Descriptive Statistics"
+write.table(output,file = paste(wd, "output.csv", sep = "/"), row.names = F, col.names = T,sep = ",")
+row.names <- data.frame(variable = "speed","dist")
+cars.output <- cbind(row.names, output)
+write.table(output,file = paste(wd, "output.csv", sep = "/"), row.names = F, col.names = T,sep = ",")
+library(ggplot2)
+library(reshape2)
+install.packages(reshape2)
+install.packages('reshape2')
+install.packages("ggplot2")
+R.Version()
+install.packages('Hmisc')
+
+#linear model for cars data
+lm1 <- lm(c$dist ~ c$speed)
+lm2 <- lm(Mugugdata$Sample.dry.leaves...stems..g. ~ Mugugdata$Fresh.biomass..kg. + 
+            Mugugdata$Sample.Fresh.leaves...stems..g.)
+geom_smooth(lm1)
+summary(lm1)
+summary(lm2)
+summary(Mugugdata)
+library(ggplot2)
+q <- ggplot(cars, aes(y=))
+
+p<-ggplot(Mugugdata,aes(y=Mugugdata$Sample.dry.leaves...stems..g.,
+           x=Mugugdata$Fresh.biomass..kg.))+geom_point(shape=1) 
+plot(m1,which=1:2)
+Orangedata$
+
+m<-ggplot(Orangedata,aes(y=Orangedata$age,x=Orangedata$circumference))+
+  geom_point(shape=1)    
+
+
+summary(p)
+p+    geom_smooth(method=lm)  
+plot(m1)
+ #ttest
+test <- t.test(Mugugdata$Sample.Fresh.leaves...stems..g., Mugugdata$Sample.dry.leaves...stems..g.)
+summary(test)
+grouping(Orangedata$Tree, lm(y=Orangedata$age,x=Orangedata$circumference))
+??grouping
