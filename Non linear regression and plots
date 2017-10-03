@@ -1,0 +1,55 @@
+#26th July 2017
+#Non linear regression
+decay<-read.csv(file.choose())
+summary(decay)
+m1<-lm(Concentration~Day+I(Day^2),data=decay)
+dlinear <- lm(Concentration~Day, data = decay)
+summary.data.frame(dlinear)
+summary(dlinear)
+summary(m1)
+plot(Concentration~Day,data=decay)
+lines( predict(m1)~Day,data=decay)
+qqnorm(residuals(m1))
+qqline(residuals(m1))
+
+plot(Concentration~Day,data=decay,xlim=c(0,50))
+lines( predict(m1,data.frame(Day=1:50)))
+#exponential model of the same dataset
+plot(Concentration~Day,data=decay)
+#Finding proper b
+C0 <- 120; B=-1
+curve(C0*exp(B*x),0,30,add=TRUE)
+B=-.5
+curve(C0*exp(B*x),0,30,add=TRUE,lty=2)
+m3<-nls(Concentration~C0*exp(B*Day),start=list(C0=120,B=.1),data=decay)
+summary(m3)
+#half life equation done using car package
+install.packages('car')
+library(car)
+deltaMethod(m3, "log(0.5)/B")
+#nonlinear plotting 
+install.packages('nlstools')
+library(nlstools)
+plotfit(m3,smooth=TRUE,col.fit="black",lwd=2,main="a")
+
+#sigmoid curves
+install.packages('drc')
+library(drc)
+install.packages('MASS')
+library(MASS)
+help("drm")
+mdrc<-drm( Concentration~Day, fct=EXD.2(),data=decay)
+plot(mdrc, log="")
+summary(mdrc)
+ryegrass.m1 <- drm(rootl ~ conc, data = ryegrass, 
+                   fct = LL.4(names = c("Slope", "Lower Limit", "Upper Limit", "ED50")))
+summary(ryegrass.m1)
+plot(ryegrass.m1, broken=TRUE, lty=2, lwd=2, main="Sigmoid concentration-Day Curve")
+
+op <- par(mfrow = c(1, 2))
+#Test for lack of fit
+modelFit(ryegrass.m1)
+plot(residuals(ryegrass.m1) ~ fitted(ryegrass.m1), main="Residuals vs Fitted")
+abline(h=0)
+qqnorm(residuals(ryegrass.m1))
+qqline(residuals(ryegrass.m1))
